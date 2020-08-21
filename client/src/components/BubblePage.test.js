@@ -26,6 +26,7 @@ const testData = {
 
 test("Fetches data and renders the bubbles", async () => {
   // Finish this test
+  mockFetch.mockResolvedValueOnce(testData)
   const { debug, getByText, getAllByText } = render(<BubblePage />)
   await waitFor(() => {
       expect(getByText(/aliceblue/i)).toBeIntheDocument()
