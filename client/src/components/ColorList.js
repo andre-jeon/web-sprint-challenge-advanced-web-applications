@@ -35,6 +35,7 @@ const ColorList = ({ colors, updateColors }) => {
             }
           })
         ])
+        setEditing(false)
       })
       .catch(err => console.log(err))
   };

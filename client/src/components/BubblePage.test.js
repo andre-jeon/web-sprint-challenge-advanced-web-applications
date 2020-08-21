@@ -1,10 +1,12 @@
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import BubblePage from "./BubblePage";
+import { fetchApi as mockApi } from './fetchApi'
+import '@testing-library/jest-dom/extend-expect'
 
-jest.mock('./axiosWithAuth')
+jest.mock('./fetchApi')
 
-const testData = {
+const mockData = {
   data: [
     {
       color: "aliceblue",
@@ -26,11 +28,11 @@ const testData = {
 
 test("Fetches data and renders the bubbles", async () => {
   // Finish this test
-  mockFetch.mockResolvedValueOnce(testData)
+  mockApi.mockResolvedValueOnce(mockData)
   const { debug, getByText, getAllByText } = render(<BubblePage />)
   await waitFor(() => {
-      expect(getByText(/aliceblue/i)).toBeIntheDocument()
-      expext(getAllByText(/color/i).toHaveLength(2))
+      expect(getByText(/aliceblue/i)).toBeInTheDocument()
+      expect(getAllByText(/color/i)).toHaveLength(1)
   })
   debug();
 });
